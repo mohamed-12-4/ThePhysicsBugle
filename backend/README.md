@@ -4,7 +4,9 @@
 !! Make sure it's on the backend directory 
 ```
 virtualenv venv
+source venv/bin/activate
 ```
+the following commands only for unix
 
 ### 2. install the requirements
 ```
