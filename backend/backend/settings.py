@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hrc@gr1k7%9wf9a@)+ane=0225@e0bg-%a8!03^x)&-b1cy!7='
+#SECRET_KEY = 'django-insecure-hrc@gr1k7%9wf9a@)+ane=0225@e0bg-%a8!03^x)&-b1cy!7='
 
 dotenv_file = BASE_DIR / '.env.local'
 
@@ -85,15 +85,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+# Add these at the top of your settings.py
+from os import getenv
+from dotenv import load_dotenv
 
+# Replace the DATABASES section of your settings.py with this
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': getenv('PGDATABASE'),
+    'USER': getenv('PGUSER'),
+    'PASSWORD': getenv('PGPASSWORD'),
+    'HOST': getenv('PGHOST'),
+    'PORT': getenv('PGPORT', 5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
 }
-
-
 DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': 'password-reset/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
