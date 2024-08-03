@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from rest_framework import status, viewsets
 from rest_framework.response import Response
-from .serializers import ContentSerializer
+from .serializers import ContentSerializer, CourseSerializer
 from .firebase import db
+from rest_framework.permissions import IsAuthenticated
+from .models import Course
 # Create your views here.
 
+class CourseViewSet(viewsets.ViewSet):
+    #permission_classes = [IsAuthenticated]
+    def list(self, request):
+        courses = Course.objects.all()
+        data = CourseSerializer(courses, many=True)
+        return Response(data.data)
+
 class ContentViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
     def list(self, request):
         contents_ref = db.collection('contents')
         docs = contents_ref.stream()
