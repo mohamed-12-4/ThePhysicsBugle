@@ -1,11 +1,14 @@
 # Register your models here.
 from django.contrib import admin
 from django import forms
-from .views import db
+from backend.firebase  import db
 from .serializers import ContentSerializer
 from .models import Section, Course, ContentProxy
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.db.models import QuerySet
+from django.shortcuts import render
+from django.urls import reverse
 
 class ContentAdminForm(forms.ModelForm):
     course_id = forms.ModelChoiceField(queryset=Course.objects.all(), label="Course")
@@ -19,6 +22,8 @@ class ContentAdminForm(forms.ModelForm):
 class ContentAdmin(admin.ModelAdmin):
     form = ContentAdminForm
     list_display = ['section_id', 'course_id']
+    change_list_template = "admin/content.html"
+
 
     def save_model(self, request, obj, form, change):
         data = form.cleaned_data
@@ -36,10 +41,26 @@ class ContentAdmin(admin.ModelAdmin):
         db.collection('contents').document(obj.id).delete()
         messages.success(request, "Content deleted successfully.")
 
-    def get_queryset(self, request):
-        # This method is required to return an empty queryset as we are using a proxy model
-        return ContentProxy.objects.none()
+    def changelist_view(self, request, extra_context=None):
+        contents = db.collection('contents').stream()
+        content_list = []
+        add_url = reverse('admin:courses_contentproxy_add')
+        for content in contents:
+            data = content.to_dict()
+            content_list.append(ContentProxy(
+                section_id=data.get('section_id'),
+                course_id=data.get('course_id'),
+                video=data.get('video', ''),
+                content=data.get('content', ''),
+                questions=data.get('questions', [])
+            ))
 
+        context = {
+            'add_url': add_url,
+            'content_list': content_list,
+        }
+        return render(request, self.change_list_template, context)
+    
     def change_view(self, request, object_id, form_url='', extra_context=None):
         # Redirect to the add view since we don't support changing existing content
         return redirect('admin:content_app_contentproxy_add')

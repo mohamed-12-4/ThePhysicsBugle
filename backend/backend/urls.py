@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('djoser.urls')),
     path('api/', include('djoser.urls.jwt')),
-    path('api/course/', include('courses.urls'))
+    path('api/', include('courses.urls')),
+    path('api/', include('articles.urls'))
 ]

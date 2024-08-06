@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'djoser',
     'social_django',
     'users',
-    'courses'
+    'articles',
+    'courses',
 ]
 
 MIDDLEWARE = [

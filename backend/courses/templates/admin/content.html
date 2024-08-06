@@ -1,0 +1,30 @@
+{% load static %}
+
+{% block content %}
+<h1>Content Proxy</h1>
+<a href="{{ add_url }}">
+    add 
+</a>
+<table>
+    <thead>
+        <tr>
+            <th>Section ID</th>
+            <th>Course ID</th>
+            <th>Video</th>
+            <th>Content</th>
+            <th>Questions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for content in content_list %}
+        <tr>
+            <td>{{ content.section_id }}</td>
+            <td>{{ content.course_id }}</td>
+            <td><a href="{{ content.video }}" target="_blank">{{ content.video }}</a></td>
+            <td>{{ content.content }}</td>
+            <td>{{ content.questions }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
