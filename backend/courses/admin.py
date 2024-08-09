@@ -47,17 +47,26 @@ class ContentAdmin(admin.ModelAdmin):
         add_url = reverse('admin:courses_contentproxy_add')
         for content in contents:
             data = content.to_dict()
-            content_list.append(ContentProxy(
+            
+            course = Course.objects.get(pk=data.get('course_id'))
+            section = Section.objects.get(pk=data.get('section_id'))
+            content_list.append({"course": course,
+                                 "section": section,
+                                 "content": ContentProxy(
                 section_id=data.get('section_id'),
                 course_id=data.get('course_id'),
                 video=data.get('video', ''),
                 content=data.get('content', ''),
                 questions=data.get('questions', [])
-            ))
+            )})
+
 
         context = {
             'add_url': add_url,
             'content_list': content_list,
+            'course': course,
+            'section': section
+
         }
         return render(request, self.change_list_template, context)
     
