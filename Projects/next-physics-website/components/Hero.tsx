@@ -24,27 +24,28 @@ const Hero = () => {
       <p className='regular-16 my-6 text-lightpurple-10 xl:max-w-[520px] py-4'>
       Dive deep into the wonders of the universe and unlock your potential for academic excellence and discovery.
       </p>
-      <h2 className="text-lightpurple-10 bold-4 py-2 ">
+      <h2 className="text-lightpurple-10 bold-4 py-2 pb-3">
       Email Address
       </h2>
-      <input type="text" name="email" id="email" placeholder=" Enter your email" required>
+      <input type="text" name="email" id="email" placeholder=" Enter your email" style={{ color: 'white' , height: '30px' }} required className='bg-gray-80'>
       </input>
       <br></br>
-      <h2 className="text-lightpurple-10 bold-4 py-2 ">
+      <h2 className="text-lightpurple-10 bold-4 py-2 pb-3">
       Password
       </h2>
-      <input type="text" name="email" id="email" placeholder=" Enter your password" required>
+      <input type="text" name="email" id="email" placeholder=" Enter your password" style={{ color: 'white' , height: '30px'}} required className='bg-gray-80'>
       </input>
       <br></br>
       <div className='py-2 flex relative'>
       <Button
             type="button"
-            title="Sign Up"
+            title="Log In"
             variant="btn_black"
             customHeight="custom-height-35"
             rounded=""
-            customWidth='custom-width-755'
+            customWidth='xl:custom-width-755'
             font="font-Lato"
+            newPath='/login'
             />
             </div>
       </div>

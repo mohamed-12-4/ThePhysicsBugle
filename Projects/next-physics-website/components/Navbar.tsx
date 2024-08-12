@@ -42,6 +42,7 @@ const Navbar = () => {
             rounded='rounded-md'
             customHeight="custom-height"
             font="font-Lato"
+            newPath='/signup'
             />
         </div>
 
