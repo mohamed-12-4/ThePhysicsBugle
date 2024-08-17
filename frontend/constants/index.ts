@@ -2,7 +2,7 @@
 export const NAV_LINKS = [
     { href: '/', key: 'learn', label: 'Learn' },
     { href: '/', key: 'resources', label: 'Resources' },
-    { href: '/', key: 'blog', label: 'Blog' },
+    { href: '/', key: 'articles', label: 'Articles' },
     { href: '/', key: 'about', label: 'About Us' },
   ];
 
