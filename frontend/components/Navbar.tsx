@@ -5,8 +5,14 @@ import React from 'react'
 import Image from 'next/image';
 import Button from './Button';
 import { useSession, signIn, signOut } from "next-auth/react";
+import {useState,useEffect} from 'react'
 
 const Navbar = () => {
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleMenu = () => {
+      setIsOpen(!isOpen);
+    };
+    
     const { data: session } = useSession();
     return (
       <nav className="flexBetween max-container padding-container relative z-30 py-5 ">
@@ -69,13 +75,53 @@ const Navbar = () => {
           </div>
         )}
 
+<button onClick={() => setIsOpen(true)} className="lg:hidden">
         <Image
-          src="/menubar.png"
+          src="/menu.svg"
           alt="menu"
-          width={32}
+          width={90}
           height={32}
-          className="inline-block cursor-pointer lg:hidden"
+          className="inline-block cursor-pointer relative"
         />
+      </button>
+
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col bg-gray-90 transition-transform transform duration-300 ease-in-out lg:hidden">
+          <div className='w-full flex flex-row h-16 relative bg-gray-80 '>
+          <button
+            onClick={() => setIsOpen(false)}
+            className=" mb-8 relative right-[-550px] bottom-[-5px] "
+          >
+            <Image
+              src="/close.svg"
+              alt="close"
+              width={50}
+              height={32}
+              className="cursor-pointer "
+            />
+          </button>
+          <Link href="/" className='relative bottom-[-20px] left-[-20px]'>
+            <Image src ="/logonew.svg" alt="logo" width={180} height={5} />
+            </Link>
+
+          </div>
+          <ul className="flex flex-col relative left-[-200px] py-10 space-y-6 ">
+            {NAV_LINKS.map((link) => (
+              <li key={link.key} className="w-full text-center">
+                <Link href={link.href} passHref>
+                  <span
+                    onClick={() => setIsOpen(false)} 
+                    className="text-lightpurple-10 text-xl hover:text-purple-500 transition-all cursor-pointer"
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       </nav>
     );
 }
