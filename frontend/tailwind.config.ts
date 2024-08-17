@@ -47,9 +47,12 @@ module.exports = {
         'bg-img-1': "url('/newton.jpg')",
         'bg-img-2': "url('/galaxy.png')",
         'bg-img-3': "url('/plane.png')",
+        'bg-img-4': "url('/magnet.png')",
+        'bg-img-5': "url('/calc.png')",
+        'bg-img-6': "url('/linear.png')",
         'glowborder': "url('/glowBorder.svg')",
         'feature-bg': "url('/feature-bg.png')",
-        pattern: "url('/pattern.png')",
+        'pattern': "url('/pattern.png')",
         'pattern-2': "url('/pattern-bg.png')",
       },
       screens: {

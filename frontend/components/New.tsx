@@ -4,7 +4,7 @@ import Button from './Button';
 import Div from './Div';
 const New = () => {
   return (
-    <section className="max-container padding-container flex flex-col py-16 z-30 ">
+    <section className="max-container flex flex-col py-16 z-30 ">
     <div className='relative flex justify-center items-center pb-14'>
   {/* <div className='absolute flex  '>
     <Image 
@@ -32,13 +32,12 @@ const New = () => {
     className="z-10"
   />
   <Div 
-    title="COSMIC MICROWAVE BACKGROUND"
-    author="Adel H. Al-yoorby"
+    title="University Physics 1"
     rounded='rounded-md'
     customHeight="custom-height-337"
     customWidth='custom-width-300'
     font="font-Lato"
-    backgroundImage="bg-bg-img-2"
+    backgroundImage="bg-bg-img-4"
     margin='margin-0'
     padding='padding-0'
   />
@@ -52,13 +51,13 @@ const New = () => {
     className="z-10"
   />
   <Div 
-    title="COSMIC MICROWAVE BACKGROUND"
+    title="Calculus 1"
     author="Adel H. Al-yoorby"
     rounded='rounded-md'
     customHeight="custom-height-337"
     customWidth='custom-width-300'
     font="font-Lato"
-    backgroundImage="bg-bg-img-2"
+    backgroundImage="bg-bg-img-5"
     margin='margin-0'
     padding='padding-0'
   />
@@ -72,13 +71,13 @@ const New = () => {
     className="z-10"
   />
   <Div 
-    title="COSMIC MICROWAVE BACKGROUND"
+    title="Linear Algebra"
     author="Adel H. Al-yoorby"
     rounded='rounded-md'
     customHeight="custom-height-337"
     customWidth='custom-width-300'
     font="font-Lato"
-    backgroundImage="bg-bg-img-2"
+    backgroundImage="bg-bg-img-6"
     margin='margin-0'
     padding='padding-0'
   />
