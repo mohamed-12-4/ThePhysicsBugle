@@ -3,6 +3,7 @@ export const NAV_LINKS = [
     { href: '/', key: 'learn', label: 'Learn' },
     { href: '/', key: 'resources', label: 'Resources' },
     { href: '/', key: 'blog', label: 'Blog' },
+    { href: '/', key: 'about', label: 'About Us' },
   ];
 
   // TOPICS SECTION
@@ -62,41 +63,49 @@ export const NAV_LINKS = [
     '/person-4.png',
   ];
   
-  
+  export const FOOTER_LEARN_LINKS = [
+    { href: '/', key: 'about', label: 'About Us' },
+    { href: '/', key: 'join', label: 'Join Us' },
+
+  ]
+
+  export const FOOTER_RESOURCES_LINKS = [
+    { href: '/', key: 'articles', label: 'Articles' },
+    { href: '/', key: 'videos', label: 'Videos' },
+
+  ]
+
+  export const FOOTER_SOCIALS_LINKS = [
+    { href: 'https://www.instagram.com/physics.bugle?igsh=aGdocG8wYmttZjI=', key: 'insta', label: '/instagram.svg' },
+    { href: 'https://www.youtube.com/@thephysicsbugle', key: 'youtube', label: '/youtube.svg' },
+
+  ]
+
   // FOOTER SECTION
   export const FOOTER_LINKS = [
     {
       title: 'Learn More',
       links: [
-        'About Hilink',
-        'Press Releases',
-        'Environment',
-        'Jobs',
-        'Privacy Policy',
-        'Contact Us',
+        'About Us',
+        'Join Us',
       ],
     },
     {
-      title: 'Our Community',
-      links: ['Climbing xixixi', 'Hiking hilink', 'Hilink kinthill'],
+      title: 'Resources',
+      links: ['Articles', 'Videos'],
     },
+    {
+      title: 'Subjects',
+      links: ['Calculus 1', 'Calculus 2', 'Calculus 3', 'University Physics 1', 'University Physics 2', 'General Chemistry 1', 'General Chemistry 2', 'Linear Algebra', 'Introduction to Computing with Python'],
+    },
+
   ];
   
-  export const FOOTER_CONTACT_INFO = {
-    title: 'Contact Us',
-    links: [
-      { label: 'Admin Officer', value: '123-456-7890' },
-      { label: 'Email Officer', value: 'hilink@akinthil.com' },
-    ],
-  };
   
   export const SOCIALS = {
     title: 'Social',
     links: [
-      '/facebook.svg',
       '/instagram.svg',
-      '/twitter.svg',
       '/youtube.svg',
-      '/wordpress.svg',
     ],
   };
