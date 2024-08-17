@@ -1,14 +1,29 @@
 
+"use client"
 import Button from '@/components/Button'
 import Peact from 'react'
 import Image from 'next/image'
+import {useState,useEffect} from 'react'
+
 function Page() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() =>{
+    const handleResize =() => {
+      setIsMobile(window.innerWidth<=1000);
+    };
+    handleResize();
+    window.addEventListener('resize',handleResize);
+    return() => {
+      window.removeEventListener('resize',handleResize);
+    };
+  },[]);
+
   return (
     <section className  = "padding-container flex flex-col gap-20 py-10 pb-0 md:gap-20 lg:py-10 xl:flex-row border-2 border-black "> 
     <div className="hero-map " />
     {/* Left */}
     <div className="relative z-20 flex flex-1 flex-col xl:w-1/2 ">
-    <h1 className="text-lightpurple-10 bold-40 lg:bold-40 py-2 pb-10">Join the Journey!</h1>
+    <h1 className="text-lightpurple-10 bold-40 lg:bold-40 py-2 pb-10 italic">Join the Journey!</h1>
     <h2 className="text-lightpurple-10 bold-4 pb-3 ">
     Full Name
     </h2>
@@ -38,13 +53,13 @@ function Page() {
           font="font-Lato"
           />
           </div>
-        <div className='relative flex flexCenter right-[-370px] top-[-90px]'>
-        <Image src = "/atom.svg"
+        <div className='relative flex flexCenter right-[-370px] top-[-130px]'>
+        {!isMobile && (<Image src = "/atom.svg"
          alt ="menu"
          width={450}
          height ={280}
-         className="absolute top-[-250px] "
-         />
+         className="absolute top-[-300px] "
+         />)}
          </div>
     </div>
 

@@ -1,10 +1,23 @@
 'use client'
 import Button from '@/components/Button'
-import Peact, { useState } from 'react'
+// import Peact, { useState } from 'react'
 import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 function Page() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() =>{
+    const handleResize =() => {
+      setIsMobile(window.innerWidth<=1000);
+    };
+    handleResize();
+    window.addEventListener('resize',handleResize);
+    return() => {
+      window.removeEventListener('resize',handleResize);
+    };
+  },[]);
+
   const router = useRouter();
   const [error, setError] = useState("");
 
@@ -29,7 +42,7 @@ function Page() {
         <div className="hero-map " />
         {/* Left */}
         <div className="relative z-20 flex flex-1 flex-col xl:w-1/2 ">
-          <h1 className="text-lightpurple-10 bold-40 lg:bold-40 py-2 pb-10">
+          <h1 className="text-lightpurple-10 bold-40 lg:bold-40 py-2 pb-10 italic">
             Log in to the Physics Bugle
           </h1>
           <h2 className="text-lightpurple-10 bold-4 pb-3 ">Email Address</h2>
@@ -65,14 +78,13 @@ function Page() {
               font="font-Lato"
             />
           </div>
-          <div className="relative flex flexCenter right-[-370px] top-[-90px]">
-            <Image
-              src="/atom.svg"
-              alt="menu"
-              width={450}
-              height={280}
-              className="absolute top-[-250px] "
-            />
+          <div className="relative flex flexCenter right-[-700px] top-[-90px]">
+          {!isMobile && (<Image src = "/atom.svg"
+         alt ="menu"
+         width={600}
+         height ={280}
+         className="absolute top-[-250px] "
+         />)}
           </div>
         </div>
       </form>
