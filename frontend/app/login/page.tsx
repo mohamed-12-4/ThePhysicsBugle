@@ -4,8 +4,35 @@ import Button from '@/components/Button'
 import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import {useState,useEffect} from 'react'
 function Page() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  if (loading) {
+     return <div>Loading...</div>
+    }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    setLoading(false);
+
+    if (result?.error) {
+      setError("Invalid email or password");
+    } else {
+      console.log("Success");
+      router.push("/");
+    }
+  };
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() =>{
     const handleResize =() => {
@@ -17,26 +44,8 @@ function Page() {
       window.removeEventListener('resize',handleResize);
     };
   },[]);
-
-  const router = useRouter();
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const result = await signIn("credentials", {
-      email: e.target.email.value,
-      password: e.target.password.value,
-      redirect: false,
-    });
-
-    if (result?.error) {
-      setError("Invalid email or password");
-    } else {
-      console.log("Success");
-      router.push("/");
-    }
-  };
   return (
+
     <section className="padding-container flex flex-col gap-20 py-10 pb-0 md:gap-20 lg:py-10 xl:flex-row border-2 border-black ">
       <form onSubmit={handleSubmit}>
         <div className="hero-map " />
@@ -54,6 +63,7 @@ function Page() {
             placeholder=" Enter your email"
             required
             className="bg-gray-80"
+            onChange={(e) => setEmail(e.target.value)}
           ></input>
           <br></br>
           <h2 className="text-lightpurple-10 bold-4 py-2 pb-3 ">Password</h2>
@@ -65,6 +75,7 @@ function Page() {
             style={{ color: "white", height: "30px", width: "600px" }}
             required
             className="bg-gray-80"
+            onChange={(e) => setPassword(e.target.value)}
           ></input>
           <br></br>
           <div className="py-2 flex relative">

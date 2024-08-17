@@ -8,6 +8,12 @@ interface AuthResponse {
   refreshToken: string;
 }
 
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 interface UserResponse {
   // Define user properties here
   id: number;
@@ -23,7 +29,7 @@ const authOptions = {
         username: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials: Record<"username" | "password", string> | undefined, req: any): Promise<any> {
         try {
           const response = await fetch("https://thephysicsbugle.onrender.com/api/jwt/create/", {
             method: "POST",
@@ -41,7 +47,7 @@ const authOptions = {
           }
         } catch (error) {
           console.error(error);
-          return null;
+          throw new Error("Authentication failed");
         }
       },
     }),
