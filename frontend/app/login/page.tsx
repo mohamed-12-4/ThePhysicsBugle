@@ -1,6 +1,6 @@
 'use client'
 import Button from '@/components/Button'
-// import Peact, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react';
