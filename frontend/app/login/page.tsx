@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react';
 import React from 'react';
-import {useState,useEffect} from 'react'
+import Loading from '@/components/Loading';
 function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +13,7 @@ function Page() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   if (loading) {
-     return <div>Loading...</div>
+     return <div><Loading /></div>
     }
 
   const handleSubmit = async (e: React.FormEvent) => {

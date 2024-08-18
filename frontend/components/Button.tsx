@@ -20,12 +20,22 @@ type ButtonProps ={
 const Button = ({type,title,variant,customHeight,customWidth,font,margin,rounded,color, newPath, onClick}: ButtonProps) => {
 
   return (
-
-    <button onClick={onClick} className={`flexCenter cursor-pointer gap-3 border ${font} ${rounded} ${color}  ${variant} ${customHeight} ${customWidth} ${font} ${margin}`}
-    type={type} >
-        <label className='flex-wrap cursor-pointer whitespace-nowrap'> {title} </label>
-    </button>
-  )
+      newPath ? (
+        <Link href={newPath}>
+          <button onClick={onClick} className={`flexCenter cursor-pointer gap-3 border ${font} ${rounded} ${color}  ${variant} ${customHeight} ${customWidth} ${font} ${margin}`}
+            type={type} >
+            <label className='flex-wrap cursor-pointer whitespace-nowrap'> {title} </label>
+          </button>
+        </Link>
+       ) : (
+        <button onClick={onClick} className={`flexCenter cursor-pointer gap-3 border ${font} ${rounded} ${color}  ${variant} ${customHeight} ${customWidth} ${font} ${margin}`}
+            type={type} >
+            <label className='flex-wrap cursor-pointer whitespace-nowrap'> {title} </label>
+          </button>
+       )
+      )
+      
+    
 }
 
 export default Button
